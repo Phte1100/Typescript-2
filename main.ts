@@ -8,7 +8,7 @@ interface Courses {
   function printUserDetails(user: Courses): void {
     const userDetailsDiv = document.getElementById("courseDetails");
     if (userDetailsDiv) {
-      userDetailsDiv.innerHTML = `
+      userDetailsDiv.innerHTML += `
         <h2>Kurser:</h2>
         <ul>
         <li><strong>Kursnamn:</strong> ${user.name}</li>
@@ -35,8 +35,6 @@ interface Courses {
   
     // Skapa ett användarobjekt
     const newCourse: Courses = {
-
-
       name: nameInput.value,
       code: codeInput.value,
       url: urlInput.value,
@@ -45,7 +43,4 @@ interface Courses {
   
     // Använd printUserDetails för att skriva ut användardetaljer
     printUserDetails(newCourse);
-
-
-    
   });
