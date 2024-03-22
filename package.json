@@ -13,7 +13,7 @@
   "packageManager": "pnpm@8.15.5+sha256.4b4efa12490e5055d59b9b9fc9438b7d581a6b7af3b5675eb5c5f447cee1a589",
   "description": "I denna uppgift ska vi skapa en sida med typescript där vi kan lägga till, uppdatera och radera kurser i en lista.",
   "dependencies": {
-    "parcel": "^2.12.0"
-  },
-  "devDependencies": {}
+    "parcel": "^2.12.0",
+    "sharp": "^0.33.2"
+  }
 }
