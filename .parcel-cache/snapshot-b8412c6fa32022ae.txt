@@ -34,7 +34,7 @@
 65C:\Users\46722\Desktop\Typescript 1\node_modules\svgo\lib\svgo.js133555883824808844 0
 78C:\Users\46722\Desktop\Typescript 1\node_modules\abortcontroller-polyfill\dist133555883821798161 1
 117C:\Users\46722\Desktop\Typescript 1\node_modules\@parcel\optimizer-htmlnano\node_modules\css-tree\lib\syntax\function133555883832940679 1
-46C:\Users\46722\Desktop\Typescript 1\.gitignore133553995240326872 0
+46C:\Users\46722\Desktop\Typescript 1\.gitignore133555999523134099 0
 64C:\Users\46722\Desktop\Typescript 1\node_modules\posthtml-render133555883819007532 1
 46C:\Users\46722\Desktop\Typescript 1\index.html133555881486496816 0
 59C:\Users\46722\Desktop\Typescript 1\node_modules\domhandler133555883820167789 1
