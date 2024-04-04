@@ -1,1 +1,4 @@
 /node_modules
+/dist
+main2.js
+main2.ts

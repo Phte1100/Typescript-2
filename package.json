@@ -1,16 +1,17 @@
 {
   "name": "typescript-2",
   "version": "1.0.0",
+  "type": "module",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
-    "start": "parcel main.ts",
-    "build": "parcel build main.ts"
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@8.15.5+sha256.4b4efa12490e5055d59b9b9fc9438b7d581a6b7af3b5675eb5c5f447cee1a589",
-  "description": "I denna uppgift ska vi skapa en sida med typescript där vi kan lägga till, uppdatera och radera kurser i en lista.",
+  "description": "I denna uppgift ska vi skapa en sida med typescript där vi kan lägga till, uppdatera och radera Todos i en lista. vi ska använda oss av OOP",
   "dependencies": {
     "parcel": "^2.12.0",
     "sharp": "^0.33.2"
