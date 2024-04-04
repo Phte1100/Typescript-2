@@ -142,16 +142,15 @@
       this[globalName] = mainExports;
     }
   }
-})({"7LIoy":[function(require,module,exports) {
+})({"K4VWZ":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
-var HMR_USE_SSE = false;
 module.bundle.HMR_BUNDLE_ID = "339fa845bcfa8452";
 "use strict";
-/* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, HMR_USE_SSE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
+/* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
   HMRAsset,
   HMRMessage,
@@ -190,7 +189,6 @@ declare var HMR_HOST: string;
 declare var HMR_PORT: string;
 declare var HMR_ENV_HASH: string;
 declare var HMR_SECURE: boolean;
-declare var HMR_USE_SSE: boolean;
 declare var chrome: ExtensionContext;
 declare var browser: ExtensionContext;
 declare var __parcel__import__: (string) => Promise<void>;
@@ -234,8 +232,7 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== "undefined") {
         "0.0.0.0"
     ].includes(hostname) ? "wss" : "ws";
     var ws;
-    if (HMR_USE_SSE) ws = new EventSource("/__parcel_hmr");
-    else try {
+    try {
         ws = new WebSocket(protocol + "://" + hostname + (port ? ":" + port : "") + "/");
     } catch (err) {
         if (err.message) console.error(err.message);
@@ -305,14 +302,12 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== "undefined") {
             }
         }
     };
-    if (ws instanceof WebSocket) {
-        ws.onerror = function(e) {
-            if (e.message) console.error(e.message);
-        };
-        ws.onclose = function() {
-            console.warn("[parcel] \uD83D\uDEA8 Connection to the HMR server was lost");
-        };
-    }
+    ws.onerror = function(e) {
+        if (e.message) console.error(e.message);
+    };
+    ws.onclose = function() {
+        console.warn("[parcel] \uD83D\uDEA8 Connection to the HMR server was lost");
+    };
 }
 function removeErrorOverlay() {
     var overlay = document.getElementById(OVERLAY_ID);
@@ -584,83 +579,129 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"7ZSs6":[function(require,module,exports) {
-// Generisk funktion för att ladda data från localStorage
-function loadFromStorage(key) {
-    const data = localStorage.getItem(key);
-    if (data) return JSON.parse(data);
-    return null;
-}
-// Anpassad funktion för att spara kurser i localStorage
-function saveCourses(courses) {
-    localStorage.setItem("courses", JSON.stringify(courses));
-}
-// Funktionen printUserDetails uppdaterad för att använda den generiska funktionen loadFromStorage
-function printUserDetails() {
-    const courses = loadFromStorage("courses") || [];
-    const userDetailsDiv = document.getElementById("courseDetails");
+var _todoList = require("./TodoList");
+document.addEventListener("DOMContentLoaded", ()=>{
+    (0, _todoList.TodoList).loadFromLocalStorage();
+    updateUI();
+    const form = document.getElementById("todoForm");
+    const taskInput = document.getElementById("task");
+    const priorityInput = document.getElementById("priority");
+    form.onsubmit = (e)=>{
+        e.preventDefault();
+        if ((0, _todoList.TodoList).addTodo(taskInput.value, priorityInput.value)) {
+            taskInput.value = "";
+            priorityInput.value = "1";
+            updateUI();
+        } else alert("Ogiltig inmatning. Kontrollera uppgiften och prioritet.");
+    };
+    const clearButton = document.getElementById("clearTodosButton");
+    clearButton.onclick = ()=>{
+        (0, _todoList.TodoList).clearTodos();
+        updateUI();
+    };
+});
+// Uppdatera UI-funktionen
+function updateUI() {
+    const userDetailsDiv = document.getElementById("todoDetails");
     if (userDetailsDiv) {
-        userDetailsDiv.innerHTML = ""; // Rensa befintligt innehåll
-        courses.forEach((course)=>{
-            const courseDiv = document.createElement("div");
-            courseDiv.id = course.code; // Sätter id till kurskoden
-            courseDiv.innerHTML = `
-          <ul>
-            <li><strong>Kursnamn:</strong> ${course.name}</li>
-            <li><strong>Kurskod:</strong> ${course.code}</li>
-            <li><strong>Progression:</strong> ${course.progression}</li>
-            <li><strong>Hemsida:</strong> <a href="${course.url}" target="_blank">${course.url}</a></li>
-          </ul>
-        `;
-            userDetailsDiv.appendChild(courseDiv); // Lägg till den nya div:en i userDetailsDiv
+        userDetailsDiv.innerHTML = "";
+        (0, _todoList.TodoList).getTodos().sort((a, b)=>parseInt(a.priority) - parseInt(b.priority)).forEach((todo, index)=>{
+            const todoDiv = document.createElement("div");
+            todoDiv.className = todo.completed ? "todo-completed" : "";
+            todoDiv.innerHTML = `
+        <ul>
+          <li><strong>Att g\xf6ra:</strong> ${todo.task}</li>
+          <li><strong>Prioritering:</strong> ${todo.priority}</li>
+          <li><strong>Genomf\xf6rd:</strong> ${todo.completed ? "Ja" : "Nej"}</li>
+        </ul>
+        <button id="compButton-${index}">Markera som klar</button>
+      `;
+            userDetailsDiv.appendChild(todoDiv);
+            // Lägg till onclick-händelsehanterare
+            const button = document.getElementById(`compButton-${index}`);
+            if (button) button.onclick = ()=>{
+                (0, _todoList.TodoList).markTodoCompleted(index);
+                updateUI();
+            };
         });
     }
 }
-// Funktion för att rensa kurser från localStorage och uppdatera UI
-function clearCourses() {
-    localStorage.removeItem("courses");
-    printUserDetails();
-}
-// Funktion för att rensa formulärfält
-function clearFormFields() {
-    document.getElementById("name").value = "";
-    document.getElementById("code").value = "";
-    document.getElementById("url").value = "";
-    document.getElementById("progression").value = "A";
-}
-// Initieringsfunktion som sätter upp eventlyssnare
-function initializeApp() {
-    printUserDetails();
-    const createButton = document.getElementById("courseForm");
-    createButton.addEventListener("submit", (event)=>{
-        event.preventDefault();
-        const newCourse = {
-            name: document.getElementById("name").value,
-            code: document.getElementById("code").value,
-            url: document.getElementById("url").value,
-            progression: document.getElementById("progression").value
-        };
-        const courses = loadFromStorage("courses") || [];
-        const existingCourseIndex = courses.findIndex((course)=>course.code === newCourse.code);
-        // Om kursen redan finns
-        if (existingCourseIndex !== -1) {
-            // Visa en bekräftelseruta
-            const overwrite = confirm("En kurs med denna kod finns redan. Vill du skriva \xf6ver den befintliga kursen?");
-            if (overwrite) // Ersätt den befintliga kursen med den nya informationen
-            courses[existingCourseIndex] = newCourse;
-            else // Avbryt operationen om användaren klickar "Avbryt"
-            return;
-        } else // Lägg till kursen om den inte redan finns
-        courses.push(newCourse);
-        // Spara den uppdaterade listan och uppdatera UI
-        saveCourses(courses);
-        printUserDetails();
-        clearFormFields();
-    });
-    const clearButton = document.getElementById("clearbutton");
-    clearButton.addEventListener("click", clearCourses);
-}
-document.addEventListener("DOMContentLoaded", initializeApp);
 
-},{}]},["7LIoy","7ZSs6"], "7ZSs6", "parcelRequire63c0")
+},{"./TodoList":"70swF"}],"70swF":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "TodoList", ()=>TodoList);
+class TodoList {
+    static{
+        this.todos = [];
+    }
+    static loadFromLocalStorage() {
+        const data = localStorage.getItem("todos");
+        if (data) TodoList.todos = JSON.parse(data);
+    }
+    static saveToLocalStorage() {
+        localStorage.setItem("todos", JSON.stringify(TodoList.todos));
+    }
+    static addTodo(task, priority) {
+        if (task === "" || ![
+            "1",
+            "2",
+            "3"
+        ].includes(priority)) return false;
+        const newTodo = {
+            task,
+            completed: false,
+            priority
+        };
+        TodoList.todos.push(newTodo);
+        TodoList.saveToLocalStorage();
+        return true;
+    }
+    static markTodoCompleted(index) {
+        if (index >= 0 && index < TodoList.todos.length) {
+            TodoList.todos[index].completed = true;
+            TodoList.saveToLocalStorage();
+        }
+    }
+    static clearTodos() {
+        TodoList.todos = [];
+        TodoList.saveToLocalStorage();
+    }
+    static getTodos() {
+        return TodoList.todos;
+    }
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"K7RDm"}],"K7RDm":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}]},["K4VWZ","7ZSs6"], "7ZSs6", "parcelRequire515e")
 
 //# sourceMappingURL=main.js.map

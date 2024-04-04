@@ -1,0 +1,22 @@
+21
+44C:\Users\46722\Desktop\Typescript 2\main2.ts133566543752573078 0
+46C:\Users\46722\Desktop\Typescript 2\.gitignore133555999523134099 0
+43C:\Users\46722\Desktop\Typescript 2\main.ts133566544157962163 0
+44C:\Users\46722\Desktop\Typescript 2\ITodo.js133566546342140139 0
+40C:\Users\46722\Desktop\Typescript 2\dist133566554146227128 1
+46C:\Users\46722\Desktop\Typescript 2\index.html133566546313805442 0
+47C:\Users\46722\Desktop\Typescript 2\main.js.map133566544138294116 0
+44C:\Users\46722\Desktop\Typescript 2\main2.js133566546342400205 0
+43C:\Users\46722\Desktop\Typescript 2\main.js133566546342320185 0
+44C:\Users\46722\Desktop\Typescript 2\ITodo.ts133566544087251604 0
+53C:\Users\46722\Desktop\Typescript 2\package-lock.json133556033605957619 0
+45C:\Users\46722\Desktop\Typescript 2\style.css133566246200683421 0
+48C:\Users\46722\Desktop\Typescript 2\package.json133566554090773500 0
+45C:\Users\46722\Desktop\Typescript 2\README.me133555881130395231 0
+39C:\Users\46722\Desktop\Typescript 2\src133566020141600450 1
+47C:\Users\46722\Desktop\Typescript 2\TodoList.js133566546342270166 0
+47C:\Users\46722\Desktop\Typescript 2\TodoList.ts133566544110396262 0
+49C:\Users\46722\Desktop\Typescript 2\tsconfig.json133566046063182512 0
+42C:\Users\46722\Desktop\Typescript 2\src\js133566544735702885 1
+48C:\Users\46722\Desktop\Typescript 2\dist\main.js133566554146167115 0
+52C:\Users\46722\Desktop\Typescript 2\dist\main.js.map133566554146217131 0

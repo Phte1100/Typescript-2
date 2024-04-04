@@ -1,7 +1,6 @@
 {
-  "name": "typescript-1",
+  "name": "typescript-2",
   "version": "1.0.0",
-  "main": "main.js",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "start": "parcel main.ts",
